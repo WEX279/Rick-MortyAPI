@@ -1,0 +1,118 @@
+*::before
+*::after{
+    box-sizing: border-box;
+}
+
+*{
+    /*background-color: black;*/
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+    body{
+        margin: 0px;
+    }
+
+        .navbar{
+            display: flex;
+            background-color: rgb(0, 0, 0);
+            gap: 3em;
+            /*size: 2em;*/
+
+        }
+
+            .navtext{
+                    color:white;
+                    border-radius: 16px;
+                    border-color: white;
+                    border: 1.8px solid;
+                    padding-left: 6px;
+                    padding-right: 6px;
+                    transition: 0.5sec ease;
+                    cursor: pointer;
+            }
+
+            .navtext:hover{
+                transform: scale(1.1);
+            }
+
+        .bg{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0px;
+            margin: 0px;
+            /*aspect-ratio: 16 / 9;*/   
+            background-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%), url(https://i1-e.pinimg.com/1200x/01/dd/03/01dd03fa0c1e7dd1bb7ebbb2124015fa.jpg);
+            background-size: 100vw;
+            background-repeat: no-repeat;
+            background-position: center ;
+            gap: 1em;
+        }   
+
+                .img{   
+                    align-content: center;
+                    min-width: 100vw;
+                }
+
+                .buscador{
+                    display: flex;
+                    justify-content: center;
+                    gap: 5px;
+                }
+
+                    .input{
+                        border-radius: 16px;
+                    }
+
+                    .button{
+                        transition: 1sec ease;
+                        cursor: pointer; 
+                        border-radius: 64px;
+                    }
+
+                    button:hover{
+                        transform: scale(1.1);
+                    }
+
+        .parrafo{
+            display: flex;
+            justify-content: center;
+        }
+
+
+        
+/* --- ESTILOS POR DEFECTO (Para Móvil) --- */
+
+
+
+
+@media (min-width: 375px) {
+    .navbar {
+        gap: 40px; /* Más separación en el menú */
+
+    }
+    .img {
+        max-width: 50%; /* El logo flotante puede ser más grande aquí */
+    }
+    .parrafo {
+        font-size: 1.2rem;
+    }
+}
+
+/* Ajustes para Celulares Pequeños */
+@media (max-width: 480px) {
+    .navbar {
+        justify-content: center;
+        flex-wrap: wrap; /* Si los textos no caben, bajan de fila limpiamente */
+        gap: 15px;
+    }
+    .bg {
+        aspect-ratio: 4 / 3; /* En móviles se necesita un contenedor más vertical */
+    }
+    .img {
+        max-width: 95%;
+    }
+    .input {
+        width: 90%;
+    }
+}
