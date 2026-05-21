@@ -4,9 +4,11 @@ const input = document.getElementById("input")
 const button = document.getElementById("button");
 
 
-button.addEventListener("click", (eventClick) => {
+button.addEventListener("click", async (eventClick) => {
     console.log(input.value);
     input.value = "";
+
+    await getData()
 })
 
 
@@ -25,10 +27,28 @@ async function getAllCharacters() {
     }
 }
       
-function charIcons(charList){
-    const getIcons = charList.filter((image) => image.map = "image")
-    console.log(getIcons)
-}
+async function getData() {
+    try{
+        const data = await getAllCharacters();
+        console.log(data); //  funciona
+        charIcons(data.results);
+        const getIcons = charIcons(data.results);
+        console.log(getIcons);
+    } catch (error){
+        console.error("Fallo del sistema", error);
+        return null;
+    };
+
+};
+getData();
+
+ function charIcons(charList){
+    return charList.map((character) => character.image);
+    console.log(charIcons);
+};
+
+
+// charIcons()
 
 function renderCharacters(charList){
     const getAliveCharacters = charList.filter((character) => character.status === "Alive")
@@ -36,7 +56,7 @@ console.log(getAliveCharacters)
 
 } 
 
-getAllCharacters()
+
 
 
 function card(){
