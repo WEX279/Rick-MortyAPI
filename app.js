@@ -7,8 +7,6 @@ const button = document.getElementById("button");
 button.addEventListener("click", async (eventClick) => {
     console.log(input.value);
     input.value = "";
-
-    await getData()
 })
 
 
@@ -17,8 +15,9 @@ async function getAllCharacters() {
         const url = 'https://rickandmortyapi.com/api';
         const res = await fetch(`${url}/character`);
         const data = await res.json();
-        renderCharacters(data.results)
-        console.log(data);
+        // getAliveCharacters(data.results)
+        // charIcons(data.results);
+        console.log(data.results);
         return data;
 
     } catch (error){
@@ -26,51 +25,21 @@ async function getAllCharacters() {
         return null;
     }
 }
-      
-async function getData() {
-    try{
-        const data = await getAllCharacters();
-        console.log(data); //  funciona
-        charIcons(data.results);
-        const getIcons = charIcons(data.results);
-        console.log(getIcons);
-    } catch (error){
-        console.error("Fallo del sistema", error);
-        return null;
-    };
 
-};
-getData();
-
- function charIcons(charList){
-    return charList.map((character) => character.image);
-    console.log(charIcons);
-};
-
-
-// charIcons()
-
-function renderCharacters(charList){
-    const getAliveCharacters = charList.filter((character) => character.status === "Alive")
-console.log(getAliveCharacters)
-
-} 
-
-
-
-
-function card(){
-
-    const container = document.querySelector("#container")
-    container.innerHTML = `
+async function card() {
+    const data = await getAllCharacters();
+    data.results.forEach((character) => {
+    const container = document.querySelector("#container");
+    container.innerHTML += `
     <div class="card">
             <div>
-                <img class="charPic" src=${image}>
+                <img class="charPic" src=${character.image}>
             </div>
-            <div>
-                <div>
-                    <div>
-                    
+            <div class="cardProfile">
+                <div class="charInfo">
+                    <div class="charStatus">
+                        <h2 class="charText">${character.name}</h2>
+                        <h3 class="charText">Status: ${character.status} - ${character.species}</h3>
                     </div>
                     <div>
                     
@@ -78,7 +47,7 @@ function card(){
                 </div>
                 <div>
                     <div>
-                        <p>ejemplo</p>
+                        <p></p>
                     </div>
                     <div>
                     
@@ -96,5 +65,57 @@ function card(){
         </div>
     `
 }
+    )};
 
-card()
+    card()
+
+// async function getAllLocations() {
+//     try {
+//         const url = 'https://rickandmortyapi.com/api';
+//         const res = await fetch(`${url}/location`);
+//         const data = await res.json();
+//         console.log(data.results);
+//         return data;
+
+//     } catch (error){
+//         console.error("Fallo del sistema", error);
+//         return null;
+//     }
+// }
+
+// getAllLocations()
+      
+// async function getIcons() {
+    
+//         const res = await getAllCharacters();
+//         const data = await charIcons(res.results);
+//         console.log(data);
+//     };
+
+// getIcons();
+
+// function charIcons(charList){
+//     return charList.map((character) => character.image);
+//     console.log(charIcons);
+// };
+
+// charIcons()
+
+// function charStatus(charList){
+//     return charList.map((character) => character.status);
+//     console.log(charStatus);
+// };
+
+// function getAliveCharacters(charList){
+//     const getAliveCharacters = charList.filter((character) => character.status === "Alive")
+// console.log(getAliveCharacters)
+// } 
+
+// getAliveCharacters()
+
+
+// function card(){
+
+    
+
+// card()
