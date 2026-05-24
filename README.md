@@ -163,6 +163,5 @@ He realizado este proyecto para practicar:
 - Manipulación de DOM.
 - Diseño de interfaces web.
 
-Visita mi perfil [aquí!](#https://github.com/WEX279)
 
 --- 
