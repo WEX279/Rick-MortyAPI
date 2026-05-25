@@ -82,39 +82,7 @@ input.addEventListener("keydown", (event) => {
     fetchData()    
     }
 });
-
-
-async function getAllCharacters() {
-    try {
-        const url = 'https://rickandmortyapi.com/api';
-        
-        let allCharacter = []
-        let nextPage = `${url}/character`;
-        
-        const res = await fetch(`${url}/character`);
-        const data = await res.json();
-        console.log(data.results);
-        return data;
-
-    } catch (error){
-        console.error("Fallo del sistema", error);
-        return null;
-    }
-}
-
-async function getAllLocations() {
-    try {
-        const url = 'https://rickandmortyapi.com/api';
-        const res = await fetch(`${url}/location`);
-        const data = await res.json();
-        console.log(data.results);
-        return data;
-
-    } catch (error){
-        console.error("Fallo del sistema", error);
-        return null;
-    }
-}      
+    
 
 async function getAllChapters() {
     try {
@@ -129,14 +97,6 @@ async function getAllChapters() {
         return null;
     }
 }
-
-async function cardChap() {
-    const data = await getAllChapters();
-    data.results.forEach((episode) => {
-
-    }) 
-}
-
 
 async function loadPage(url) {
     
@@ -154,9 +114,7 @@ async function loadPage(url) {
         currentPage = url;
 
         container.innerHTML = "";
-    // const char = await getAllCharacters();
-    // char.results.forEach((character) => {
-    // const container = document.querySelector("#container");
+
     data.results.forEach((character) => {
 
     container.innerHTML += `
@@ -172,13 +130,13 @@ async function loadPage(url) {
                     </div>
                     <div class="charLocation">
                         <p class="textLocation">Last seen: </p>
-                        <h4 class="textLocation"></h4>
+                        <h4 class="textLocation">${character.origin.name}</h4>
                     </div>
                 </div>
                 <div class="charEpi">
                     <div>
                         <p class="textEpi">First seen:</p>
-                        <h4 class="textEpi">  ${character}</h4>
+                        <h4 class="textEpi">${character}</h4>
                     </div>
                 </div>
             </div>
@@ -210,11 +168,6 @@ async function charIcons(charList){
 
 charIcons()
 
-function charStatus(charList){
-    return charList.map((character) => character.status);
-    console.log(charStatus);
-};
-
 document.getElementById("next").addEventListener("click", () =>{
     if(nextPage){
         loadPage(nextPage);
@@ -228,11 +181,3 @@ document.getElementById("prev").addEventListener("click", () =>{
 })
 
 loadPage(currentPage);
-
-// function getAliveCharacters(charList){
-//     const getAliveCharacters = charList.filter((character) => character.status === "Alive")
-// console.log(getAliveCharacters)
-// } 
-
-// getAliveCharacters()
-
