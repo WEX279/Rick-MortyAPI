@@ -172,7 +172,7 @@ async function loadPage(url) {
                     </div>
                     <div class="charLocation">
                         <p class="textLocation">Last seen: </p>
-                        <h4 class="textLocation">${character.origin.name}</h4>
+                        <h4 class="textLocation"></h4>
                     </div>
                 </div>
                 <div class="charEpi">
